@@ -1,0 +1,31 @@
+# Library to import real-time UTC
+from datetime import datetime, timedelta
+
+# Library to call yahoo's historical data
+import yfinance as yahoo
+
+# Library to handle and use financial data
+import pandas as pd
+
+# ML file
+from ML_Predictions import *
+
+
+class Stock():
+       
+    def __init__(self, stock):
+        self.stock = stock    
+
+    # Calls the historical data of stock
+    # 1 weeks worth of data
+    def historyCall(stock):
+
+        # Obtains the current date and time (UTC)
+        # Also obtains the date and time 1 week before
+        current_date = datetime.now()
+        one_week_prior = current_date - timedelta(days=30)
+        
+        historical_data = yahoo.download(stock, start=one_week_prior, end=current_date)
+
+        return historical_data
+            
