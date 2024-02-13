@@ -15,6 +15,16 @@ class Stock():
        
     def __init__(self, stock):
         self.stock = stock    
+    
+    # Returns the current price of the Stock
+    def currentPrice(stock):
+        stock_stat = yahoo.Ticker(stock)
+        return stock_stat.info['ask']
+
+    # Returns the # of shares
+    def stockCount(stock):
+        return yahoo.Ticker(stock).info.get('sharesOutstanding', 'N/A')
+    
 
     # Calls the historical data of stock
     # 1 weeks worth of data
