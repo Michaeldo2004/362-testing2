@@ -1,172 +1,613 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <!---google search console-->
-    <meta name="google-site-verification" content="KAcJmLnN_DlQVcFaMYfVLic6a25mCcz9POX2FN8Mto4" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- your title-->
-    <title>Machine Learning Predictor</title>
-    <link rel="shortcut icon" href="img/tra.png" sizes="16x16 32x32" type="image/x-icon" />
-    <link href="css/master.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time AI Stock Predictor</title>
 
-    <script>
-        "use strict";
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
 
-        !function () {
-            var t = window.driftt = window.drift = window.driftt || [];
-            if (!t.init) {
-                if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
-                t.invoked = !0,t.methods = ["identify","config","track","reset","debug","show","ping","page","hide","off","on"],
-                    t.factory = function (e) {
-                        return function () {
-                            var n = Array.prototype.slice.call(arguments);
-                            return n.unshift(e),t.push(n),t;
-                        };
-                    },t.methods.forEach(function (e) {
-                        t[e] = t.factory(e);
-                    }),t.load = function (t) {
-                        var e = 3e5,n = Math.ceil(new Date() / e) * e,o = document.createElement("script");
-                        o.type = "text/javascript",o.async = !0,o.crossorigin = "anonymous",o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
-                        var i = document.getElementsByTagName("script")[0];
-                        i.parentNode.insertBefore(o,i);
-                    };
-            }
-        }();
-        drift.SNIPPET_VERSION = '0.3.1';
-        drift.load('c3aurgtk94ca');
-    </script>
-    <!-- End of Async Drift Code -->
-    <!-- SWITCHER -->
-    <link rel="stylesheet" id="switcher-css" type="text/css" href="assets/switcher/css/switcher.css" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/color1.css" title="color1" media="all"
-        data-default-color="true" />
-    <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/color2.css" title="color2" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/color3.css" title="color3" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/color4.css" title="color4" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/color5.css" title="color5" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/color6.css" title="color6" media="all" />
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<!--body start-->
 
-<body data-scrolling-animations="true">
-    <div class="sp-body">
-        <!-- Loader Landing Page -->
-        <div id="ip-container" class="ip-container">
-            <div class="ip-header">
-                <div class="ip-loader">
-                    <svg class="ip-inner" width="60px" height="60px" viewBox="0 0 80 80">
-                        <path class="ip-loader-circlebg"
-                            d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,39.3,10z" />
-                        <path id="ip-loader-circle" class="ip-loader-circle"
-                            d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z" />
-                    </svg>
-                </div>
-            </div>
+<body>
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="./assets/images/logo.svg" width="32" height="32" alt="AI Stock Predictor logo">
+        AI Stock Predictor
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="#" class="navbar-link active" data-nav-link>Homepage</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#" class="navbar-link" data-nav-link>Stocks</a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="section hero" aria-label="hero" data-section>
+        <div class="container">
+
+          <div class="hero-content">
+
+            <h1 class="h1 hero-title">"Empowering Investors with AI Precision in Stock Market Forecasting"</h1>
+
+            <p class="hero-text">
+              Here is a little info about the website
+            </p>
+
+            <a href="#" class="btn btn-primary">Get started</a>
+
+          </div>
+
+          <figure class="hero-banner">
+            <img src="./assets/images/hero-banner.png" width="570" height="448" alt="hero banner" class="w-100">
+          </figure>
+
         </div>
-        <!-- Loader end -->
-
-        <!--logo-->
-        <header id="this-is-top">
-            <div class="container-fluid">
-
-                <div class="row header">
-
-                    <div class="topmenu row">
-                        <nav class="col-sm-offset-3 col-md-offset-4 col-lg-offset-4 col-sm-6 col-md-5 col-lg-5">
-                            <a href="#"><img src="icon/b.png" height="40px" width="80px"><img src="icon/a.png"
-                                    height="40px" width="80px"><img src="icon/c.png" height="40px" width="80px"><img
-                                    src="icon/d.png" height="40px" width="80px"><img src="icon/e.png" height="40px"
-                                    width="80px"></a>
-
-                    </div>
-                    <!-- TradingView Widget BEGIN -->
-                    <!-- TradingView Widget BEGIN -->
-                    <div class="tradingview-widget-container">
-                        <div class="tradingview-widget-container__widget"></div>
-                        <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com/"
-                                rel="noopener nofollow" target="_blank"><span class="blue-text"></span></a></div>
-                        <script type="text/javascript"
-                            src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-                                {
-                                    "symbols": [
-                                        {
-                                            "proName": "BITSTAMP:BTCUSD",
-                                            "title": "Bitcoin"
-                                        },
-                                        {
-                                            "proName": "BITSTAMP:ETHUSD",
-                                            "title": "Ethereum"
-                                        },
-                                        {
-                                            "proName": "Tesla",
-                                            "title": "TSLA"
-                                        },
-                                        {
-                                            "description": "BTC",
-                                            "proName": "BITSTAMP:BTCUSD"
-                                        }
-                                    ],
-                                        "showSymbolLogo": true,
-                                            "colorTheme": "dark",
-                                                "isTransparent": false,
-                                                    "displayMode": "adaptive",
-                                                        "locale": "in"
-                                }
-                            </script>
-                    </div>
-                    <!-- TradingView Widget END -->
-                    <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-8 col-md-8 col-lg-8">
-                        <div class="text-right header-padding">
+      </section>
 
 
 
 
-                        </div>
 
-                    </div>
+      <!-- 
+        - #TREND
+      -->
+
+      <section class="section trend" aria-label="crypto trend" data-section>
+        <div class="container">
+
+          <div class="trend-tab">
+
+            <ul class="tab-nav">
+
+              <li>
+                <button class="tab-btn active">Stocks</button>
+              </li>
+
+            </ul>
+
+            <ul class="tab-content">
+
+              <li>
+                <div class="trend-card">
+
+                  <div class="card-title-wrapper">
+                    <img src="./assets/images/coin-1.svg" width="24" height="24" alt="bitcoin logo">
+
+                    <a href="#" class="card-title">
+                      Bitcoin <span class="span">BTC/USD</span>
+                    </a>
+                  </div>
+
+                  <data class="card-value" value="46168.95">USD 46,168.95</data>
+
+                  <div class="card-analytics">
+                    <data class="current-price" value="36641.20">36,641.20</data>
+
+                    <div class="badge red">-0.79%</div>
+                  </div>
+
                 </div>
-                <!--menu-->
-                <div id="main-menu-bg"></div>
-                <a id="menu-open" href="#"><i class="fa fa-bars"></i></a>
-                <nav class="main-menu navbar-main-slide">
-                    <div class="col-sm-3 col-md-3 col-lg-3">
-                        <img src="icon/logo.png" width="150px" height="60px" alt="RAM RATHOR" />
+              </li>
+
+              <li>
+                <div class="trend-card active">
+
+                  <div class="card-title-wrapper">
+                    <img src="./assets/images/coin-2.svg" width="24" height="24" alt="ethereum logo">
+
+                    <a href="#" class="card-title">
+                      Ethereum <span class="span">ETH/USD</span>
+                    </a>
+                  </div>
+
+                  <data class="card-value" value="3480.04">USD 3,480.04</data>
+
+                  <div class="card-analytics">
+                    <data class="current-price" value="36641.20">36,641.20</data>
+
+                    <div class="badge green">+10.55%</div>
+                  </div>
+
+                </div>
+              </li>
+
+              <li>
+                <div class="trend-card">
+
+                  <div class="card-title-wrapper">
+                    <img src="./assets/images/coin-3.svg" width="24" height="24" alt="tether logo">
+
+                    <a href="#" class="card-title">
+                      Tether <span class="span">USDT/USD</span>
+                    </a>
+                  </div>
+
+                  <data class="card-value" value="1.00">USD 1.00</data>
+
+                  <div class="card-analytics">
+                    <data class="current-price" value="36641.20">36,641.20</data>
+
+                    <div class="badge red">-0.01%</div>
+                  </div>
+
+                </div>
+              </li>
+
+              <li>
+                <div class="trend-card">
+
+                  <div class="card-title-wrapper">
+                    <img src="./assets/images/coin-4.svg" width="24" height="24" alt="bnb logo">
+
+                    <a href="#" class="card-title">
+                      BNB <span class="span">BNB/USD</span>
+                    </a>
+                  </div>
+
+                  <data class="card-value" value="443.56">USD 443.56</data>
+
+                  <div class="card-analytics">
+                    <data class="current-price" value="36641.20">36,641.20</data>
+
+                    <div class="badge red">-1.24%</div>
+                  </div>
+
+                </div>
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #MARKET
+      -->
+
+      <section class="section market" aria-label="market update" data-section>
+        <div class="container">
+
+          <div class="title-wrapper">
+            <h2 class="h2 section-title">Market Update</h2>
+
+            <a href="#" class="btn-link">See All Stocks</a>
+          </div>
+
+          <div class="market-tab">
+
+            <ul class="tab-nav">
+
+              <li>
+                <button class="tab-btn active">View All</button>
+              </li>
+
+              <li>
+                <button class="tab-btn">Energy</button>
+              </li>
+
+            </ul>
+
+            <table class="market-table">
+
+              <thead class="table-head">
+
+                <tr class="table-row table-title">
+
+                  <th class="table-heading"></th>
+
+                  <th class="table-heading" scope="col">#</th>
+
+                  <th class="table-heading" scope="col">Name</th>
+
+                  <th class="table-heading" scope="col">Last Price</th>
+
+                  <th class="table-heading" scope="col">24h %</th>
+
+                  <th class="table-heading" scope="col">Market Cap</th>
+
+                  <th class="table-heading" scope="col">Last 7 Days</th>
+
+                  <th class="table-heading"></th>
+
+                </tr>
+
+              </thead>
+
+              <tbody class="table-body">
+
+                <tr class="table-row">
+
+                  <td class="table-data">
+                    <button class="add-to-fav" aria-label="Add to favourite" data-add-to-fav>
+                      <ion-icon name="star-outline" aria-hidden="true" class="icon-outline"></ion-icon>
+                      <ion-icon name="star" aria-hidden="true" class="icon-fill"></ion-icon>
+                    </button>
+                  </td>
+
+                  <th class="table-data rank" scope="row">1</th>
+
+                  <td class="table-data">
+                    <div class="wrapper">
+                      <img src="./assets/images/coin-1.svg" width="20" height="20" alt="Bitcoin logo" class="img">
+
+                      <h3>
+                        <a href="#" class="coin-name">Bitcoin <span class="span">BTC</span></a>
+                      </h3>
                     </div>
+                  </td>
 
-                    <ul class="nav navbar-nav navbar-main">
+                  <td class="table-data last-price">$56,623.54</td>
 
-                        <li><a href='/home'>HOME</a></li>
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" class="dropdown-toggle border-hover-color1"
-                                href="sevice/tranding.htmlm">Trading Course
-                            </a>
+                  <td class="table-data last-update green">+1.45%</td>
 
-                        </li>
-                        <li><a href="animated calculator/index.html">Calculator</a></li>
-                        <li>
-                            <a class="btn_header_search" href="#"><i class="fa fa-search"></i></a>
-                        </li>
-                    </ul>
-                    <div class="search-form-modal transition">
-                        <form class="navbar-form header_search_form">
-                            <i class="fa fa-times search-form_close"></i>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search" />
-                            </div>
-                            <button type="submit" class="btn btn_search customBgColor">
-                                Search
-                            </button>
-                        </form>
+                  <td class="table-data market-cap">$880,423,640,582</td>
+
+                  <td class="table-data">
+                    <img src="./assets/images/chart-1.svg" width="100" height="40" alt="profit chart" class="chart">
+                  </td>
+
+                </tr>
+
+                <tr class="table-row">
+
+                  <td class="table-data">
+                    <button class="add-to-fav" aria-label="Add to favourite" data-add-to-fav>
+                      <ion-icon name="star-outline" aria-hidden="true" class="icon-outline"></ion-icon>
+                      <ion-icon name="star" aria-hidden="true" class="icon-fill"></ion-icon>
+                    </button>
+                  </td>
+
+                  <th class="table-data rank" scope="row">2</th>
+
+                  <td class="table-data">
+                    <div class="wrapper">
+                      <img src="./assets/images/coin-2.svg" width="20" height="20" alt="Ethereum logo" class="img">
+
+                      <h3>
+                        <a href="#" class="coin-name">Ethereum <span class="span">ETH</span></a>
+                      </h3>
                     </div>
-                </nav>
-                <a id="menu-close" href="#"><i class="fa fa-times"></i></a>
-            </div>
-        </header>
-        <!--menu end-->
+                  </td>
+
+                  <td class="table-data last-price">$56,623.54</td>
+
+                  <td class="table-data last-update red">-5.12%</td>
+
+                  <td class="table-data market-cap">$880,423,640,582</td>
+
+                  <td class="table-data">
+                    <img src="./assets/images/chart-2.svg" width="100" height="40" alt="loss chart" class="chart">
+                  </td>
+
+                </tr>
+
+                <tr class="table-row">
+
+                  <td class="table-data">
+                    <button class="add-to-fav" aria-label="Add to favourite" data-add-to-fav>
+                      <ion-icon name="star-outline" aria-hidden="true" class="icon-outline"></ion-icon>
+                      <ion-icon name="star" aria-hidden="true" class="icon-fill"></ion-icon>
+                    </button>
+                  </td>
+
+                  <th class="table-data rank" scope="row">3</th>
+
+                  <td class="table-data">
+                    <div class="wrapper">
+                      <img src="./assets/images/coin-3.svg" width="20" height="20" alt="Tether logo" class="img">
+
+                      <h3>
+                        <a href="#" class="coin-name">Tether <span class="span">USDT/USD</span></a>
+                      </h3>
+                    </div>
+                  </td>
+
+                  <td class="table-data last-price">$56,623.54</td>
+
+                  <td class="table-data last-update green">+1.45%</td>
+
+                  <td class="table-data market-cap">$880,423,640,582</td>
+
+                  <td class="table-data">
+                    <img src="./assets/images/chart-1.svg" width="100" height="40" alt="profit chart" class="chart">
+                  </td>
+
+                </tr>
+
+                <tr class="table-row">
+
+                  <td class="table-data">
+                    <button class="add-to-fav" aria-label="Add to favourite" data-add-to-fav>
+                      <ion-icon name="star-outline" aria-hidden="true" class="icon-outline"></ion-icon>
+                      <ion-icon name="star" aria-hidden="true" class="icon-fill"></ion-icon>
+                    </button>
+                  </td>
+
+                  <th class="table-data rank" scope="row">4</th>
+
+                  <td class="table-data">
+                    <div class="wrapper">
+                      <img src="./assets/images/coin-4.svg" width="20" height="20" alt="BNB logo" class="img">
+
+                      <h3>
+                        <a href="#" class="coin-name">BNB <span class="span">BNB/USD</span></a>
+                      </h3>
+                    </div>
+                  </td>
+
+                  <td class="table-data last-price">$56,623.54</td>
+
+                  <td class="table-data last-update red">-3.75%%</td>
+
+                  <td class="table-data market-cap">$880,423,640,582</td>
+
+                  <td class="table-data">
+                    <img src="./assets/images/chart-2.svg" width="100" height="40" alt="loss chart" class="chart">
+                  </td>
+
+                </tr>
+
+                <tr class="table-row">
+
+                  <td class="table-data">
+                    <button class="add-to-fav" aria-label="Add to favourite" data-add-to-fav>
+                      <ion-icon name="star-outline" aria-hidden="true" class="icon-outline"></ion-icon>
+                      <ion-icon name="star" aria-hidden="true" class="icon-fill"></ion-icon>
+                    </button>
+                  </td>
+
+                  <th class="table-data rank" scope="row">5</th>
+
+                  <td class="table-data">
+                    <div class="wrapper">
+                      <img src="./assets/images/coin-5.svg" width="20" height="20" alt="Solana logo" class="img">
+
+                      <h3>
+                        <a href="#" class="coin-name">Solana <span class="span">SOL</span></a>
+                      </h3>
+                    </div>
+                  </td>
+
+                  <td class="table-data last-price">$56,623.54</td>
+
+                  <td class="table-data last-update green">+1.45%</td>
+
+                  <td class="table-data market-cap">$880,423,640,582</td>
+
+                  <td class="table-data">
+                    <img src="./assets/images/chart-1.svg" width="100" height="40" alt="profit chart" class="chart">
+                  </td>
+
+                </tr>
+
+                <tr class="table-row">
+
+                  <td class="table-data">
+                    <button class="add-to-fav" aria-label="Add to favourite" data-add-to-fav>
+                      <ion-icon name="star-outline" aria-hidden="true" class="icon-outline"></ion-icon>
+                      <ion-icon name="star" aria-hidden="true" class="icon-fill"></ion-icon>
+                    </button>
+                  </td>
+
+                  <th class="table-data rank" scope="row">6</th>
+
+                  <td class="table-data">
+                    <div class="wrapper">
+                      <img src="./assets/images/coin-6.svg" width="20" height="20" alt="XRP logo" class="img">
+
+                      <h3>
+                        <a href="#" class="coin-name">XRP <span class="span">XRP</span></a>
+                      </h3>
+                    </div>
+                  </td>
+
+                  <td class="table-data last-price">$56,623.54</td>
+
+                  <td class="table-data last-update red">-2.22%</td>
+
+                  <td class="table-data market-cap">$880,423,640,582</td>
+
+                  <td class="table-data">
+                    <img src="./assets/images/chart-2.svg" width="100" height="40" alt="loss chart" class="chart">
+                  </td>
+
+                </tr>
+
+                <tr class="table-row">
+
+                  <td class="table-data">
+                    <button class="add-to-fav" aria-label="Add to favourite" data-add-to-fav>
+                      <ion-icon name="star-outline" aria-hidden="true" class="icon-outline"></ion-icon>
+                      <ion-icon name="star" aria-hidden="true" class="icon-fill"></ion-icon>
+                    </button>
+                  </td>
+
+                  <th class="table-data rank" scope="row">7</th>
+
+                  <td class="table-data">
+                    <div class="wrapper">
+                      <img src="./assets/images/coin-7.svg" width="20" height="20" alt="Cardano logo" class="img">
+
+                      <h3>
+                        <a href="#" class="coin-name">Cardano <span class="span">ADA</span></a>
+                      </h3>
+                    </div>
+                  </td>
+
+                  <td class="table-data last-price">$56,623.54</td>
+
+                  <td class="table-data last-update green">+0.8%</td>
+
+                  <td class="table-data market-cap">$880,423,640,582</td>
+
+                  <td class="table-data">
+                    <img src="./assets/images/chart-1.svg" width="100" height="40" alt="profit chart" class="chart">
+                  </td>
+
+                </tr>
+
+                <tr class="table-row">
+
+                  <td class="table-data">
+                    <button class="add-to-fav" aria-label="Add to favourite" data-add-to-fav>
+                      <ion-icon name="star-outline" aria-hidden="true" class="icon-outline"></ion-icon>
+                      <ion-icon name="star" aria-hidden="true" class="icon-fill"></ion-icon>
+                    </button>
+                  </td>
+
+                  <th class="table-data rank" scope="row">8</th>
+
+                  <td class="table-data">
+                    <div class="wrapper">
+                      <img src="./assets/images/coin-8.svg" width="20" height="20" alt="Avalanche logo" class="img">
+
+                      <h3>
+                        <a href="#" class="coin-name">Avalanche <span class="span">AVAX</span></a>
+                      </h3>
+                    </div>
+                  </td>
+
+                  <td class="table-data last-price">$56,623.54</td>
+
+                  <td class="table-data last-update green">+1.41%</td>
+
+                  <td class="table-data market-cap">$880,423,640,582</td>
+
+                  <td class="table-data">
+                    <img src="./assets/images/chart-1.svg" width="100" height="40" alt="profit chart" class="chart">
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 
+        - #ABOUT
+      -->
+
+      <section class="section about" aria-label="about" data-section>
+        <div class="container">
+
+          <figure class="about-banner">
+            <img src="./assets/images/about-banner.png" width="748" height="436" loading="lazy" alt="about banner"
+              class="w-100">
+          </figure>
+
+          <div class="about-content">
+
+            <h2 class="h2 section-title">What Is Real-Time Market Data</h2>
+
+            <ul class="section-list">
+
+              <li class="section-item">
+                <div class="title-wrapper">
+                  <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+
+                  <h3 class="h3 list-title">View real-time Stock prices</h3>
+                </div>
+
+                <p class="item-text">
+                  Predictive Power: Leverage machine learning models to forecast stock opening and closing prices based
+                  on historical data.
+                  User-Friendly Interface: Enjoy a seamless and intuitive experience with a well-crafted front-end
+                  design, ensuring ease of use for both novice and experienced users.
+                  Real-Time Market Data: Stay updated with real-time market data, including Bitcoin and Ethereum prices,
+                  courtesy of TradingView widgets.
+                  Calculator Tool: Use our animated calculator tool to perform quick and accurate financial
+                  calculations.
+
+                </p>
+              </li>
+
+            </ul>
+
+            <a href="#" class="btn btn-primary">Explore More</a>
+
+          </div>
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js" defer></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </body>
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 </html>
