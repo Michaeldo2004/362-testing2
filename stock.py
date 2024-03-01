@@ -25,7 +25,16 @@ class Stock():
     def stockCount(stock):
         return yahoo.Ticker(stock).info.get('sharesOutstanding', 'N/A')
     
-
+    # Returns Market Cap
+    def marketCap(stock):
+        try:
+            stock_data = yahoo.Ticker(stock)
+            info = stock_data.info
+            market_cap = info.get('marketCap', None)
+            return market_cap
+        except Exception as e:
+            return -1
+    
     # Calls the historical data of stock
     # 1 weeks worth of data
     def historyCall(stock):
