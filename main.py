@@ -6,7 +6,7 @@ import ML_Predictions as ml
 
 app = Flask(__name__)
 
-# Sample route to get the current stock closing price
+# Closing Price
 @app.route('/current_closing_price/<string:stock_symbol>', methods=['GET'])
 def get_current_closing_price(stock_symbol):
     stock = sk.Stock(stock_symbol)
@@ -20,14 +20,24 @@ def get_current_closing_price(stock_symbol):
     
     return jsonify({'symbol': stock_symbol, 'current_closing_price': current_closing_price})
 
-# Sample route to get the stock count
+# MarketCap
+@app.route('/market_cap/<string:stock_symbol>', methods=['GET'])
+def get_market_cap(stock_symbol):
+    stock = sk.Stock(stock_symbol)
+    
+    # Get the market cap using the Stock class
+    market_cap = stock.marketCap()
+
+    return jsonify({'symbol': stock_symbol, 'market_cap': market_cap})
+
+# Stock Count
 @app.route('/stock_count/<string:stock_symbol>', methods=['GET'])
 def get_stock_count(stock_symbol):
     stock = sk.Stock(stock_symbol)
     stock_count = sk.stockCount()
     return jsonify({'symbol': stock_symbol, 'stock_count': stock_count})
 
-# Sample route to make predictions for closing prices
+# Predict Closing
 @app.route('/predict_closing/<string:stock_symbol>', methods=['GET'])
 def make_closing_predictions(stock_symbol):
     stock = sk.Stock(stock_symbol)
