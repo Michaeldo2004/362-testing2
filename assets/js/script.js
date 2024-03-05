@@ -3,7 +3,7 @@
 
 
 /**
- * add event on element
+ * adds event on element
  */
 
 const addEventOnElem = function (elem, type, callback) {
@@ -45,7 +45,7 @@ addEventOnElem(navbarLinks, "click", closeNavbar);
 
 
 /**
- * header active
+ * this is the header active
  */
 
 const header = document.querySelector("[data-header]");
@@ -63,7 +63,7 @@ addEventOnElem(window, "scroll", activeHeader);
 
 
 /**
- * toggle active on add to fav
+ * the toggle active on add to fav
  */
 
 const addToFavBtns = document.querySelectorAll("[data-add-to-fav]");
@@ -77,7 +77,7 @@ addEventOnElem(addToFavBtns, "click", toggleActive);
 
 
 /**
- * scroll revreal effect
+ * user scroll revreal effect
  */
 
 const sections = document.querySelectorAll("[data-section]");
