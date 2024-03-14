@@ -7,6 +7,7 @@ from main import Stock
 
 app = Flask(__name__)
 
+# Gets request then pushes all the details we need to frontend
 @app.route('/stock_details', methods=['GET'])
 def get_stock_details():
     stock_symbol = request.args.get('symbol')
