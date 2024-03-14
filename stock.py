@@ -12,39 +12,41 @@ from ML_Predictions import *
 
 
 class Stock():
-       
-    def __init__(self, stock):
-        self.stock = stock    
-    
-    # Returns the current price of the Stock
-    def currentPrice(stock):
-        stock_stat = yahoo.Ticker(stock)
-        return stock_stat.info['ask']
 
-    # Returns the # of shares
-    def stockCount(stock):
-        return yahoo.Ticker(stock).info.get('sharesOutstanding', 'N/A')
-    
-    # Returns Market Cap
-    def marketCap(stock):
-        try:
-            stock_data = yahoo.Ticker(stock)
-            info = stock_data.info
-            market_cap = info.get('marketCap', None)
-            return market_cap
-        except Exception as e:
-            return -1
-    
-    # Calls the historical data of stock
-    # 1 weeks worth of data
-    def historyCall(stock):
+  def __init__(self, stock):
+    self.stock = stock
 
-        # Obtains the current date and time (UTC)
-        # Also obtains the date and time 1 week before
-        current_date = datetime.now()
-        one_week_prior = current_date - timedelta(days=30)
-        
-        historical_data = yahoo.download(stock, start=one_week_prior, end=current_date)
+  # Returns the current price of the Stock
+  def currentPrice(self):
+    stock_stat = yahoo.Ticker(self.stock)
+    return stock_stat.info['ask']
 
-        return historical_data
-            
+  # Returns the # of shares
+  def stockCount(self):
+    return yahoo.Ticker(self.stock).info.get('sharesOutstanding', 'N/A')
+
+  # Returns Market Cap
+  def marketCap(self):
+    try:
+      stock_data = yahoo.Ticker(self.stock)
+      info = stock_data.info
+      market_cap = info.get('marketCap', None)
+      return market_cap
+    except Exception:
+      return -1
+
+  # Calls the historical data of stock
+  # 1 weeks worth of data
+  def historyCall(self):
+
+    # Obtains the current date and time (UTC)
+    # Also obtains the date and time 1 week before
+    current_date = datetime.now()
+    one_week_prior = current_date - timedelta(days=30)
+
+    historical_data = yahoo.download(self.stock,
+                                     start=one_week_prior,
+                                     end=current_date)
+
+    return historical_data
+
