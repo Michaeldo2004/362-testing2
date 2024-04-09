@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("stock_details.html")
 
 @app.route('/stock_details', methods=['GET'])
 def get_stock_details():

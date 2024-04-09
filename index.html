@@ -86,7 +86,9 @@
                             Here is a some information about the website
                         </p>
 
-                        <a href="#" class="btn btn-primary">Get started</a>
+                        <li class="navbar-item">
+                            <a href="/stock_details.html" class="btn btn-primary">Get started</a>
+                        </li>
 
                     </div>
 
@@ -654,6 +656,93 @@
 
                 </div>
             </section>
+
+
+
+            <div class="container">
+                <h1>Stock Details</h1>
+                <label for="symbol-select">Select Symbol:</label>
+                <select id="symbol-select">
+                    <option value="AAPL">AAPL</option>
+                    <option value="GOOG">GOOG</option>
+                    <option value="MSFT">MSFT</option>
+                    <option value="NVDA">NVDA</option>
+                    <option value="AMZN">AMZN</option>
+                    <option value="INTC">INTC</option>
+                    <option value="TSLA">TSLA</option>
+                    <option value="TSM">TSM</option>
+                    <option value="XOM">XOM</option>
+                    <option value="ORCL">ORCL</option>
+
+                </select>
+                <ul>
+                    <li><span class="label">Symbol:</span> <span id="symbol"></span></li>
+                    <li><span class="label">Current Price:</span> $<span id="current-price"></span></li>
+                    <li><span class="label">Stock Count:</span> <span id="stock-count"></span></li>
+                    <li><span class="label">Market Cap:</span> $<span id="market-cap"></span></li>
+                    <li><span class="label">Predicted Prices (2d):</span> <span id="predicted-prices"></span></li>
+                </ul>
+            </div>
+
+            <script>
+
+                // Function to simplify large numbers
+                function simplifyNumber(number) {
+                    if (number >= 1e12) {
+                        return (number / 1e12).toFixed(2) + 'T';
+                    }
+                    if (number >= 1e9) {
+                        return (number / 1e9).toFixed(2) + 'B';
+                    }
+                    if (number >= 1e6) {
+                        return (number / 1e6).toFixed(2) + 'M';
+                    }
+                    return number.toString();
+                }
+
+                // Function to fetch stock details based on selected symbol
+                function fetchStockDetails(symbol) {
+                    fetch(`/stock_details?symbol=${symbol}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update HTML with stock details
+                            document.getElementById('symbol').textContent = data.symbol;
+                            document.getElementById('current-price').textContent = data.current_price;
+                            document.getElementById('stock-count').textContent = simplifyNumber(data.stock_count);
+                            document.getElementById('market-cap').textContent = simplifyNumber(data.market_cap);
+
+                            // Extract predicted prices from the data and calculate the range
+                            const predictedPrices = data.predicted_prices.map(priceArray => priceArray[0]);
+                            const minPrice = Math.min(...predictedPrices);
+                            const maxPrice = Math.max(...predictedPrices);
+                            const priceRange = `$${minPrice.toFixed(2)} - $${maxPrice.toFixed(2)}`;
+
+                            // Display the predicted price range
+                            document.getElementById('predicted-prices').textContent = priceRange;
+
+                            // Clear the existing list of predicted prices
+                            const predictedPricesList = document.getElementById('predicted-prices-list');
+                            predictedPricesList.innerHTML = '';
+
+                            // Display the individual predicted prices in a list
+                            predictedPrices.forEach(price => {
+                                const listItem = document.createElement('li');
+                                listItem.textContent = `$${price.toFixed(2)}`;
+                                predictedPricesList.appendChild(listItem);
+                            });
+                        })
+                        .catch(error => console.error('Error fetching stock details:',error));
+                }
+
+                // Event listener for when the symbol selection changes
+                document.getElementById('symbol-select').addEventListener('change',function (event) {
+                    const selectedSymbol = event.target.value;
+                    fetchStockDetails(selectedSymbol);
+                });
+
+                // Fetch initial stock details for the default symbol (AAPL)
+                fetchStockDetails('AAPL');
+            </script>
 
             <!-- 
         - #ABOUT
