@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Details</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4af;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #555;
+        }
+
+        th {
+            background-color: #444;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #4af;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #4af;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #3783b3;
+        }
+
+        /* Styling for hyperlinks */
+        a {
+            color: #fff; /* White font color */
+            text-decoration: none; /* Remove underline */
+        }
+
+        /* Styling for hyperlinks on hover */
+        a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <section class="section market" aria-label="market update" data-section>
+        <div class="container">
+
+            <div class="title-wrapper">
+                <h2 class="h2 section-title">Stocks</h2>
+            </div>
+
+            <div class="market-tab">
+
+                <ul class="tab-nav"></ul>
+
+                <table class="market-table">
+
+                    <thead class="table-head">
+
+                        <tr class="table-row table-title">
+
+                            <th class="table-heading"></th>
+
+                            <th class="table-heading" scope="col">#</th>
+
+                            <th class="table-heading" scope="col">Name</th>
+
+                            <th class="table-heading" scope="col">Current Price</th>
+
+                            <th class="table-heading" scope="col">24h %</th>
+
+                            <th class="table-heading" scope="col">Market Cap</th>
+
+                            <th class="table-heading"></th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody class="table-body">
+
+                        <tr class="table-row">
+
+                            <td class="table-data">
+                                <button class="add-to-fav" aria-label="Add to favourite" data-add-to-fav>
+                                    <ion-icon name="star-outline" aria-hidden="true" class="icon-outline"></ion-icon>
+                                    <ion-icon name="star" aria-hidden="true" class="icon-fill"></ion-icon>
+                                </button>
+                            </td>
+
+                            <th class="table-data rank" scope="row">1</th>
+
+                            <td class="table-data">
+                                <div class="wrapper">
+                                    <img src="./assets/images/coin-1.svg" width="20" height="20" alt="Bitcoin logo" class="img">
+                                    <h3>
+                                        <a href="https://finance.yahoo.com/quote/AAPL/" target="_blank" class="coin-name">Apple <span class="span">| APPL</span></a>
+                                    </h3>
+                                </div>
+                            </td>
+
+                            <td class="table-data last-price" id="current-price">
+                                <!-- Current Price will be updated dynamically -->
+                            </td>
+
+                            <td class="table-data last-update green" id="percentage">
+                                <!-- Percentage will be updated dynamically -->
+                            </td>
+
+                            <td class="table-data market-cap" id="market-cap">
+                                <!-- Market Cap will be updated dynamically -->
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+                <div class="back-button" onclick="goBack()">Back</div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        // Function to simplify large numbers
+        function simplifyNumber(number) {
+            if (number >= 1e12) {
+                return (number / 1e12).toFixed(2) + 'T';
+            }
+            if (number >= 1e9) {
+                return (number / 1e9).toFixed(2) + 'B';
+            }
+            if (number >= 1e6) {
+                return (number / 1e6).toFixed(2) + 'M';
+            }
+            return number.toString();
+        }
+
+        // Function to fetch stock details based on selected symbol
+        function fetchStockDetails(symbol) {
+            // Hide the predicted prices row
+            document.getElementById('predicted-prices-row').style.display = 'none';
+
+            fetch(`/api/stock_details?symbol=${symbol}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update HTML with stock details
+                    document.getElementById('symbol').textContent = data.symbol;
+                    document.getElementById('current-price').textContent = data.current_price;
+                    document.getElementById('stock-count').textContent = simplifyNumber(data.stock_count);
+                    document.getElementById('market-cap').textContent = simplifyNumber(data.market_cap);
+                    document.getElementById('percentage').textContent = simplifyNumber(data.percent);
+                })
+                .catch(error => console.error('Error fetching stock details:',error));
+        }
+
+        // Event listener for when the symbol selection changes
+        document.getElementById('symbol-select').addEventListener('change',function (event) {
+            const selectedSymbol = event.target.value;
+            fetchStockDetails(selectedSymbol);
+        });
+        // Fetch initial stock details for the default symbol (AAPL)
+        function goBack() {
+            window.history.back();
+        }  
+          </script>
+</body>
+
+</html>
