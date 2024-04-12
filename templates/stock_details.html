@@ -113,9 +113,7 @@
                 <option value="AMZN">AMZN</option>
                 <option value="INTC">INTC</option>
                 <option value="TSLA">TSLA</option>
-                <option value="TSM">TSM</option>
                 <option value="XOM">XOM</option>
-                <option value="ORCL">ORCL</option>
             </select>
         </div>
         <table>
@@ -174,7 +172,7 @@
                 .then(data => {
                     // Update HTML with stock details
                     document.getElementById('symbol').textContent = data.symbol;
-                    document.getElementById('current-price').textContent = data.current_price;
+                    document.getElementById('current-price').textContent = '$' + data.current_price;
                     document.getElementById('stock-count').textContent = simplifyNumber(data.stock_count);
                     document.getElementById('market-cap').textContent = simplifyNumber(data.market_cap);
 
