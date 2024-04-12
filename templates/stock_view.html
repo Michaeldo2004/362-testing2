@@ -15,7 +15,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             background-color: #333;
             border-radius: 10px;
@@ -52,14 +52,13 @@
         }
 
         .back-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
             background-color: #4af;
             color: #fff;
             border: none;
             border-radius: 5px;
-            padding: 10px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
@@ -68,143 +67,155 @@
             background-color: #3783b3;
         }
 
-        /* Styling for hyperlinks */
-        a {
-            color: #fff; /* White font color */
-            text-decoration: none; /* Remove underline */
+        .positive {
+            color: green;
         }
 
-        /* Styling for hyperlinks on hover */
-        a:hover {
-            text-decoration: underline; /* Add underline on hover */
+        .negative {
+            color: red;
+        }
+
+        .stock-link {
+            color: #fff;
+            text-decoration: none;
         }
     </style>
 </head>
 
 <body>
-    <section class="section market" aria-label="market update" data-section>
-        <div class="container">
+    <div class="container">
+        <h1>Stock Details</h1>
+        <table>
+            <tr>
+                <th class="label">Symbol</th>
+                <th class="label">Current Price</th>
+                <th class="label">24h % Change</th>
+                <th class="label">Market Cap</th>
+            </tr>
+            <tr>
+                <td><a href="https://finance.yahoo.com/quote/AAPL/" id="symbol-AAPL" class="stock-link" target="_blank">AAPL</a></td>
+                <td id="current-price-AAPL">Loading...</td>
+                <td id="percent-change-AAPL">Loading...</td>
+                <td id="market-cap-AAPL">Loading...</td>
+            </tr>
+            <tr>
+                <td><a href="https://finance.yahoo.com/quote/GOOG/" id="symbol-GOOG" class="stock-link" target="_blank">GOOG</a></td>
+                <td id="current-price-GOOG">Loading...</td>
+                <td id="percent-change-GOOG">Loading...</td>
+                <td id="market-cap-GOOG">Loading...</td>
+            </tr>
+            <tr>
+                <td><a href="https://finance.yahoo.com/quote/MSFT/" id="symbol-MSFT" class="stock-link" target="_blank">MSFT</a></td>
+                <td id="current-price-MSFT">Loading...</td>
+                <td id="percent-change-MSFT">Loading...</td>
+                <td id="market-cap-MSFT">Loading...</td>
+            </tr>
+            <tr>
+                <td><a href="https://finance.yahoo.com/quote/NVDA/" id="symbol-NVDA" class="stock-link" target="_blank">NVDA</a></td>
+                <td id="current-price-NVDA">Loading...</td>
+                <td id="percent-change-NVDA">Loading...</td>
+                <td id="market-cap-NVDA">Loading...</td>
+            </tr>
+            <tr>
+                <td><a href="https://finance.yahoo.com/quote/AMZN/" id="symbol-AMZN" class="stock-link" target="_blank">AMZN</a></td>
+                <td id="current-price-AMZN">Loading...</td>
+                <td id="percent-change-AMZN">Loading...</td>
+                <td id="market-cap-AMZN">Loading...</td>
+            </tr>
+            <tr>
+                <td><a href="https://finance.yahoo.com/quote/INTC/" id="symbol-INTC" class="stock-link" target="_blank">INTC</a></td>
+                <td id="current-price-INTC">Loading...</td>
+                <td id="percent-change-INTC">Loading...</td>
+                <td id="market-cap-INTC">Loading...</td>
+            </tr>
+            <tr>
+                <td><a href="https://finance.yahoo.com/quote/TSLA/" id="symbol-TSLA" class="stock-link" target="_blank">TSLA</a></td>
+                <td id="current-price-TSLA">Loading...</td>
+                <td id="percent-change-TSLA">Loading...</td>
+                <td id="market-cap-TSLA">Loading...</td>
+            </tr>
+            <tr>
+                <td><a href="https://finance.yahoo.com/quote/XOM/" id="symbol-XOM" class="stock-link" target="_blank">XOM</a></td>
+                <td id="current-price-XOM">Loading...</td>
+                <td id="percent-change-XOM">Loading...</td>
+                <td id="market-cap-XOM">Loading...</td>
+            </tr>
 
-            <div class="title-wrapper">
-                <h2 class="h2 section-title">Stocks</h2>
-            </div>
-
-            <div class="market-tab">
-
-                <ul class="tab-nav"></ul>
-
-                <table class="market-table">
-
-                    <thead class="table-head">
-
-                        <tr class="table-row table-title">
-
-                            <th class="table-heading"></th>
-
-                            <th class="table-heading" scope="col">#</th>
-
-                            <th class="table-heading" scope="col">Name</th>
-
-                            <th class="table-heading" scope="col">Current Price</th>
-
-                            <th class="table-heading" scope="col">24h %</th>
-
-                            <th class="table-heading" scope="col">Market Cap</th>
-
-                            <th class="table-heading"></th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody class="table-body">
-
-                        <tr class="table-row">
-
-                            <td class="table-data">
-                                <button class="add-to-fav" aria-label="Add to favourite" data-add-to-fav>
-                                    <ion-icon name="star-outline" aria-hidden="true" class="icon-outline"></ion-icon>
-                                    <ion-icon name="star" aria-hidden="true" class="icon-fill"></ion-icon>
-                                </button>
-                            </td>
-
-                            <th class="table-data rank" scope="row">1</th>
-
-                            <td class="table-data">
-                                <div class="wrapper">
-                                    <img src="./assets/images/coin-1.svg" width="20" height="20" alt="Bitcoin logo" class="img">
-                                    <h3>
-                                        <a href="https://finance.yahoo.com/quote/AAPL/" target="_blank" class="coin-name">Apple <span class="span">| APPL</span></a>
-                                    </h3>
-                                </div>
-                            </td>
-
-                            <td class="table-data last-price" id="current-price">
-                                <!-- Current Price will be updated dynamically -->
-                            </td>
-
-                            <td class="table-data last-update green" id="percentage">
-                                <!-- Percentage will be updated dynamically -->
-                            </td>
-
-                            <td class="table-data market-cap" id="market-cap">
-                                <!-- Market Cap will be updated dynamically -->
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
-                <div class="back-button" onclick="goBack()">Back</div>
-            </div>
-
-        </div>
-    </section>
+        </table>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </div>
 
     <script>
-        // Function to simplify large numbers
-        function simplifyNumber(number) {
-            if (number >= 1e12) {
-                return (number / 1e12).toFixed(2) + 'T';
+        // Function to fetch stock details
+        async function fetchStockDetails(symbol) {
+            const response = await fetch(`/api/stock_details?symbol=${symbol}`);
+            if (response.ok) {
+                return response.json();
+            } else {
+                // Retry after 1 second if response is not ok
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                return fetchStockDetails(symbol);
             }
-            if (number >= 1e9) {
-                return (number / 1e9).toFixed(2) + 'B';
-            }
-            if (number >= 1e6) {
-                return (number / 1e6).toFixed(2) + 'M';
-            }
-            return number.toString();
         }
 
-        // Function to fetch stock details based on selected symbol
-        function fetchStockDetails(symbol) {
-            // Hide the predicted prices row
-            document.getElementById('predicted-prices-row').style.display = 'none';
-
-            fetch(`/api/stock_details?symbol=${symbol}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Update HTML with stock details
-                    document.getElementById('symbol').textContent = data.symbol;
-                    document.getElementById('current-price').textContent = data.current_price;
-                    document.getElementById('stock-count').textContent = simplifyNumber(data.stock_count);
-                    document.getElementById('market-cap').textContent = simplifyNumber(data.market_cap);
-                    document.getElementById('percentage').textContent = simplifyNumber(data.percent);
-                })
-                .catch(error => console.error('Error fetching stock details:',error));
+        // Function to update stock details in the table
+        async function updateStockDetails(symbol) {
+            const data = await fetchStockDetails(symbol);
+            if (data.error) {
+                // If error, update table with 'Refreshing...'
+                document.getElementById(`current-price-${symbol}`).textContent = 'Refreshing...';
+                document.getElementById(`percent-change-${symbol}`).textContent = 'Refreshing...';
+                document.getElementById(`market-cap-${symbol}`).textContent = 'Refreshing...';
+                // Retry after 1 second
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                // Update again
+                await updateStockDetails(symbol);
+            } else {
+                document.getElementById(`current-price-${symbol}`).textContent = '$' + data.current_price;
+                document.getElementById(`percent-change-${symbol}`).textContent = data.percent.toFixed(2) + '%';
+                document.getElementById(`market-cap-${symbol}`).textContent = simplifyMarketCap(data.market_cap);
+                const percentChangeElem = document.getElementById(`percent-change-${symbol}`);
+                if (data.percent >= 0) {
+                    percentChangeElem.classList.add('positive');
+                    percentChangeElem.classList.remove('negative');
+                } else {
+                    percentChangeElem.classList.add('negative');
+                    percentChangeElem.classList.remove('positive');
+                }
+            }
         }
 
-        // Event listener for when the symbol selection changes
-        document.getElementById('symbol-select').addEventListener('change',function (event) {
-            const selectedSymbol = event.target.value;
-            fetchStockDetails(selectedSymbol);
-        });
-        // Fetch initial stock details for the default symbol (AAPL)
+        // Function to simplify market cap numbers
+        function simplifyMarketCap(marketCap) {
+            if (marketCap >= 1e12) {
+                return (marketCap / 1e12).toFixed(2) + 'T';
+            }
+            if (marketCap >= 1e9) {
+                return (marketCap / 1e9).toFixed(2) + 'B';
+            }
+            if (marketCap >= 1e6) {
+                return (marketCap / 1e6).toFixed(2) + 'M';
+            }
+            if (marketCap >= 1e3) {
+                return (marketCap / 1e3).toFixed(2) + 'K';
+            }
+            return marketCap.toString();
+        }
+
+        // Function to fetch stock details for all symbols
+        async function fetchAllStockDetails() {
+            const symbols = ['AAPL', 'GOOG', 'MSFT', 'NVDA', 'AMZN', 'INTC', 'TSLA', 'XOM'];
+            await Promise.all(symbols.map(symbol => updateStockDetails(symbol)));
+        }
+
+        // Fetch initial stock details for all symbols
+        fetchAllStockDetails();
+
+        // Function to navigate back
         function goBack() {
             window.history.back();
-        }  
-          </script>
+        }
+    </script>
 </body>
 
 </html>
